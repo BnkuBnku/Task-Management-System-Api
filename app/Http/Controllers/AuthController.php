@@ -53,8 +53,8 @@ class AuthController extends Controller
 
         $user_data['password'] =  bcrypt($user_data['password']);
         $user_data['role_id'] =  2;
-        $user = User::create($user_data);
+        User::create($user_data);
 
-        return response()->json(compact('user'));
+        return response()->json(['message' => 'Registered Successfully.']);
     }
 }

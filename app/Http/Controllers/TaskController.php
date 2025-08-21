@@ -29,7 +29,7 @@ class TaskController extends Controller
                     ->when(!empty($payload['priority']), function ($q) use ($payload){
                         return  $q->where('priority',$payload['priority']);
                     })
-                    ->orderBy('created_at', 'DESC');
+                    ->orderBy('order', 'DESC');
 
         $data = $query->skip($safeSkip)
             ->take($payload['take'])
@@ -46,10 +46,10 @@ class TaskController extends Controller
      */
     public function store(TaskStoreValidation $request)
     {
-        $data = $request->validated();
-        $task = Task::create($data);
+        $validated = $request->validated();
+        $data = Task::create($validated);
 
-        return response()->json(compact('task'));
+        return response()->json(compact('data'));
     }
 
     /**
@@ -60,11 +60,11 @@ class TaskController extends Controller
      */
     public function update(TaskUpdateValidation $request)
     {
-        $data = $request->all();
-        $task = Task::where('id',$request->id)->first();
-        $task->update($data);
+        $validated = $request->validated();
+        $data = Task::where('id',$request->id)->first();
+        $data->update($validated);
 
-        return response()->json(compact('task'));
+        return response()->json(compact('data'));
     }
 
     /**
