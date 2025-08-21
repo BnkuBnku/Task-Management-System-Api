@@ -15,7 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::match(['GET', 'POST'],'fetch', [UserController::class, 'fetch']);
         // Route::post('store', [UserController::class, 'store']);
         Route::patch('update/{id}', [UserController::class, 'update']);
-        // Route::delete('delete/{id}', [UserController::class, 'delete']);
+        Route::delete('delete/{id}', [UserController::class, 'delete']);
     });
 
     # Task

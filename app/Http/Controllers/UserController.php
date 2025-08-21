@@ -60,8 +60,8 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        Task::where('id',$id)->delete();
-        $message = 'Task deleted successfully.';
+        User::where('id',$id)->delete();
+        $message = 'User deleted successfully.';
         return $message;
     }
 }
