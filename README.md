@@ -427,3 +427,49 @@ Success (200 OK):
     "message": "User deleted successfully."
 }
 ```
+
+# COMMANDS AND OTHERS
+DeleteOverDueTasks Command
+
+Command Signature:
+```sh
+php artisan app:delete-over-due-tasks
+```
+
+Description:
+Deletes all tasks older than 30 days and logs the deletions compactly in a separate log file (storage/logs/task_deletions.log).
+
+### Behavior / Flow
+
+Calculate threshold date:
+Tasks created more than 30 days ago are eligible for deletion.
+
+Fetch tasks older than 30 days:
+Retrieves all tasks matching the condition.
+
+Bulk delete:
+Deletes all fetched tasks in one query for efficiency.
+
+Compact logging:
+
+Logs all deletions in one entry using the task_deletions log channel.
+
+Log contains:
+
+deleted_count → number of deleted tasks
+
+tasks → array of deleted task IDs and titles
+
+deleted_at → timestamp of deletion
+
+Console output:
+
+Displays how many tasks were deleted.
+
+If no tasks found, outputs a message: "No tasks older than 30 days found."
+
+### Migrations
+
+```sh
+php artisan migrate
+```

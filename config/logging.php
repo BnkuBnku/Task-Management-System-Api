@@ -51,7 +51,12 @@ return [
     */
 
     'channels' => [
-
+        
+        'task_deletions' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/task_deletions.log'),
+            'level' => 'info',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', (string) env('LOG_STACK', 'single')),
