@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskFetchValidation;
-use App\Http\Requests\TaskStoreValidation;
-use App\Http\Requests\TaskUpdateValidation;
-use App\Models\Task;
+use App\Http\Requests\UserFetchValidation;
+use App\Http\Requests\UserUpdateValidation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class UserController extends Controller
 {
     /**
-     * fetch tasks
+     * fetch users
      *
-     * @param  TaskFetchValidation $request
+     * @param  UserFetchValidation $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function fetch(TaskFetchValidation $request)
+    public function fetch(UserFetchValidation $request)
     {
         $payload = $request->validated();
-        $safeSkip = $payload['skip'] ?? 0;
-        $query = Task::when(!empty($payload['keyword']), function ($q) use ($payload){
+        $query = User::when(!empty($payload['keyword']), function ($q) use ($payload){
                         return  $q->where('title', 'ilike', '%'.$payload['keyword'].'%');
                     })
                     ->when(!empty($payload['status']), function ($q) use ($payload){
@@ -31,40 +29,27 @@ class TaskController extends Controller
                     })
                     ->orderBy('created_at', 'DESC');
 
-        $data = $query->skip($safeSkip)
+        $data = $query->skip($payload['skip'])
             ->take($payload['take'])
+            ->with('role')
             ->get();
 
         return response()->json(compact('data'));
     }
 
     /**
-     * store tasks
-     *
-     * @param  TaskStoreValidation $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(TaskStoreValidation $request)
-    {
-        $data = $request->validated();
-        $task = Task::create($data);
-
-        return response()->json(compact('task'));
-    }
-
-    /**
      * update tasks
      *
-     * @param  TaskUpdateValidation $request
+     * @param  UserUpdateValidation $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(TaskUpdateValidation $request)
+    public function update(UserUpdateValidation $request)
     {
         $data = $request->all();
-        $task = Task::where('id',$request->id)->first();
-        $task->update($data);
+        $user = User::where('id',$request->id)->first();
+        $user->update($data);
 
-        return response()->json(compact('task'));
+        return response()->json(compact('user'));
     }
 
     /**

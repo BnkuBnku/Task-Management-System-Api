@@ -23,25 +23,25 @@ class UserValidation extends FormRequest
     public static function rules()
     {
         return [
-            "name" => ['required', Rule::unique('users','name')],
-            'email' => ['required','email', Rule::unique('users','email')],
-            'password' => 'required|min:12|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#])[A-Za-z\d@$!%*?&_#]+$/',
-            'confirm_password' => 'required|same:password',
+            "name"              => ['required', Rule::unique('users','name')],
+            'email'             => ['required','email', Rule::unique('users','email')],
+            'password'          => ['required', 'min:12', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#])[A-Za-z\d@$!%*?&_#]+$/'],
+            'confirm_password'  => ['required', 'same:password'],
         ];
     }
 
     public static function message()
     {
         return [
-            'name.required' => 'Nickname is required',
-            'name.unique' => 'Nickname already exists',
-            'email.required'  => 'Email is required.',
-            'email.unique'  => 'Email already exists.',
-            'email.email'  => 'Must be a valid email.',
-            'password.required'  => 'Password is required.',
-            'password.min'  => 'Password must be at least 12 characters.',
-            'password.regex'  => 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.',
-            'confirm_password.required'  => 'Confirm Password is required.',
+            'name.required'             => 'Nickname is required',
+            'name.unique'               => 'Nickname already exists',
+            'email.required'            => 'Email is required.',
+            'email.unique'              => 'Email already exists.',
+            'email.email'               => 'Must be a valid email.',
+            'password.required'         => 'Password is required.',
+            'password.min'              => 'Password must be at least 12 characters.',
+            'password.regex'            => 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.',
+            'confirm_password.required' => 'Confirm Password is required.',
         ];
     }
 }

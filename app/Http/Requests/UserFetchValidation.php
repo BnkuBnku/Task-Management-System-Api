@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Traits\PayloadRuleTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskFetchValidation extends FormRequest
+class UserFetchValidation extends FormRequest
 {
     use PayloadRuleTrait;
 

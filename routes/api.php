@@ -11,12 +11,12 @@ Route::post('/login', [AuthController::class, 'login']);
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     # User
-    // Route::group(['prefix' => 'user'], function () {
-    //     Route::match(['GET', 'POST'],'fetch', [UserController::class, 'fetch']);
-    //     Route::post('store', [UserController::class, 'store']);
-    //     Route::patch('update/{id}', [UserController::class, 'update']);
-    //     Route::delete('delete/{id}', [UserController::class, 'delete']);
-    // });
+    Route::group(['prefix' => 'user'], function () {
+        Route::match(['GET', 'POST'],'fetch', [UserController::class, 'fetch']);
+        // Route::post('store', [UserController::class, 'store']);
+        Route::patch('update/{id}', [UserController::class, 'update']);
+        // Route::delete('delete/{id}', [UserController::class, 'delete']);
+    });
 
     # Task
     Route::group(['prefix' => 'task'], function () {

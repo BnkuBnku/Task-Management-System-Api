@@ -16,7 +16,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($data)){
             $user = Auth::user();
-            
+
             $is_password_weak = false;
 
             # check if password is weak
@@ -52,7 +52,7 @@ class AuthController extends Controller
         $user_data = $validate_user->validated();
 
         $user_data['password'] =  bcrypt($user_data['password']);
-        $user_data['role_id'] =  3;
+        $user_data['role_id'] =  2;
         $user = User::create($user_data);
 
         return response()->json(compact('user'));
