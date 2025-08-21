@@ -8,10 +8,10 @@
 </p>
 
 ## Requirements
-PHP 8.2
-Composer
-Laravel 12
-Laravel Sanctum
+* PHP 8.2
+* Composer
+* Laravel 12
+* Laravel Sanctum
 
 ## API Documentation
 
