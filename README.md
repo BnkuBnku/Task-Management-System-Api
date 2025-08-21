@@ -7,17 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Requirements
-PHP 8.2
-Composer
-Laravel 12
-Laravel Sanctum
+# Requirements
+* PHP 8.2
+* Composer
+* Laravel 12
+* Laravel Sanctum
 
-## API Documentation
+# API Documentation
 
 AUTH LOGIN AND REGISTRATION
 
-# REGISTRATION
+### REGISTRATION
 
 Register User
 
@@ -73,7 +73,7 @@ Error Responses:
 }
 ```
 
-# LOGIN
+### LOGIN
 
 Login User
 
@@ -134,7 +134,7 @@ Error Responses
 }
 ```
 
-# TASK (FETCH)
+### TASK (FETCH)
 
 Fetch Tasks
 
@@ -182,7 +182,7 @@ Success (200 OK):
     ]
 }
 ```
-# TASK (STORE)
+### TASK (STORE)
 
 Create Task
 
@@ -230,7 +230,7 @@ Success (201 Created):
 }
 ```
 
-# TASK (UPDATE)
+### TASK (UPDATE)
 
 Update Task
 
@@ -283,7 +283,7 @@ Success (200 OK):
 }
 ```
 
-# TASK (DELETE)
+### TASK (DELETE)
 
 Delete Task
 
@@ -307,7 +307,7 @@ Success (200 OK):
 }
 ```
 
-# USER (FETCH)
+### USER (FETCH)
 
 Fetch Users
 
@@ -359,7 +359,7 @@ Success (200 OK):
 }
 ```
 
-# USER (UPDATE)
+### USER (UPDATE)
 
 Update User
 
@@ -404,7 +404,7 @@ Success (200 OK):
 }
 ```
 
-# USER (DELETE)
+### USER (DELETE)
 
 Delete User
 
